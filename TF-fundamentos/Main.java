@@ -5,8 +5,7 @@ public class Main {
         Scanner teclado = new Scanner(System.in);
         Menu menu = new Menu();
 
-        Menu.getCadastroUsuarios(teclado);
-        Menu.getCadastroViagem(teclado);
+        Menu.getCadastroUsuarios(teclado,0);
 
         //amem (a main)
     }
