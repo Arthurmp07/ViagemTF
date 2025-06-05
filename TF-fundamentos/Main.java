@@ -7,5 +7,7 @@ public class Main {
 
         Menu.getCadastroUsuarios(teclado);
         Menu.getCadastroViagem(teclado);
+
+        //amem (a main)
     }
 }
