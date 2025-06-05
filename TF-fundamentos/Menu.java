@@ -1,26 +1,24 @@
 import java.util.Scanner;
 
 public class Menu {
-    private int quantPessoas;
-    private Usuario pessoa;
-    private Viagem viagem;
-
     public Menu() {
 
     }
 
-    public static void getCadastroUsuarios(Scanner teclado, int quantPessoas) {
-        System.out.println("\n===== CADASTRO DE USUÁRIOS =====\n");
+    public static void getMenu1(Scanner teclado){
+        System.out.println("\n===== MENU =====\n");
 
         System.out.println("Quantas pessoas participarão da viagem? ");
-        quantPessoas = teclado.nextInt();
+        int quantPessoas = teclado.nextInt();
 
         Usuario[] pessoa = new Usuario[quantPessoas];
-        Usuario.cadastro(teclado, pessoa);
 
+        Menu.getCadastroUsuarios(teclado, pessoa);
         Menu.getCadastroViagem(teclado, pessoa);
+    }
 
-        System.out.println();
+    public static void getCadastroUsuarios(Scanner teclado, Usuario[] pessoa) {
+        Usuario.getCadastro(teclado, pessoa);
     }
 
     public static void getCadastroViagem(Scanner teclado, Usuario[] pessoa) {
@@ -33,6 +31,7 @@ public class Menu {
             for(int i=0;i<pessoa.length;i++){
                 if(idTeste == pessoa[i].getId()){
                     System.out.println("Usuário: "+pessoa[i].getNome());
+                    
                 }
             }
         }

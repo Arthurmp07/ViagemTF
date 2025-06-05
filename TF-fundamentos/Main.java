@@ -3,9 +3,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String args[]) {
         Scanner teclado = new Scanner(System.in);
-        Menu menu = new Menu();
 
-        Menu.getCadastroUsuarios(teclado,0);
+        Menu.getMenu1(teclado);
 
         //amem (a main)
     }

@@ -11,7 +11,9 @@ public class Usuario {
         this.email = email;
     }
 
-    public static void cadastro(Scanner teclado, Usuario[] pessoa) {
+    public static Usuario[] getCadastro(Scanner teclado, Usuario[] pessoa) {
+        System.out.println("\n===== CADASTRO DE USUÁRIOS =====\n");
+        
         for (int i = 0; i < pessoa.length; i++) {
             System.out.println("===== USUÁRIO " + (i + 1) + " =====\n");
             pessoa[i] = new Usuario();
@@ -19,9 +21,13 @@ public class Usuario {
             pessoa[i].setNome(teclado);
             pessoa[i].setEmail(teclado);
         }
+
+        System.out.println("\nCadastro de usuários realizado com sucesso!\n");
+
+        return pessoa;
     }
 
-    public static void usuariosCadastrados(Usuario[] pessoa) {
+    public static void getUsuariosCadastrados(Usuario[] pessoa) {
         System.out.println("\n===== USUÁRIOS CADASTRADOS =====\n");
 
         for (int i = 0; i < pessoa.length; i++) {
@@ -47,7 +53,7 @@ public class Usuario {
     }
 
     public void setId(Scanner teclado) {
-        System.out.println("Digite o ID: ");
+        System.out.print("Digite o ID: ");
         this.id = teclado.nextInt();
         teclado.nextLine();
 
@@ -55,14 +61,14 @@ public class Usuario {
     }
 
     public void setNome(Scanner teclado) {
-        System.out.println("Digite o nome: ");
+        System.out.print("Digite o nome: ");
         this.nome = teclado.nextLine();
 
         System.out.println();
     }
 
     public void setEmail(Scanner teclado) {
-        System.out.println("Digite o email: ");
+        System.out.print("Digite o email: ");
         this.email = teclado.nextLine();
 
         System.out.println();

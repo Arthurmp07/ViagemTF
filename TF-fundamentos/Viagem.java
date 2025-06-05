@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Viagem {
     private int id;
     private String destino;
@@ -12,6 +14,23 @@ public class Viagem {
         this.dataFim = dataFim;
         this.usuario = usuario;
     }
+
+    public static Viagem[] getCadastro(Scanner teclado, Usuario[] pessoa) {
+        System.out.println("\n===== CADASTRO DE USUÁRIOS =====\n");
+        
+        for (int i = 0; i < pessoa.length; i++) {
+            System.out.println("===== USUÁRIO " + (i + 1) + " =====\n");
+            pessoa[i] = new Usuario();
+            pessoa[i].setId(teclado);
+            pessoa[i].setNome(teclado);
+            pessoa[i].setEmail(teclado);
+        }
+
+        System.out.println("\nCadastro de usuários realizado com sucesso!\n");
+
+        return pessoa;
+    }
+
 
     public int getId() {
         return id;
