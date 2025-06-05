@@ -12,26 +12,34 @@ public class Menu {
         int quantPessoas = teclado.nextInt();
 
         Usuario[] pessoa = new Usuario[quantPessoas];
+        Viagem[] viagem = new Viagem[quantPessoas];
 
         Menu.getCadastroUsuarios(teclado, pessoa);
-        Menu.getCadastroViagem(teclado, pessoa);
+        Menu.getCadastroViagem(teclado, pessoa, viagem);
     }
 
     public static void getCadastroUsuarios(Scanner teclado, Usuario[] pessoa) {
         Usuario.getCadastro(teclado, pessoa);
     }
 
-    public static void getCadastroViagem(Scanner teclado, Usuario[] pessoa) {
+    public static void getCadastroViagem(Scanner teclado, Usuario[] pessoa, Viagem[] viagem) {
         while (true) {
             System.out.println("\n===== CADASTRO DE VIAGENS =====\n");
 
             System.out.println("Qual usuário deseja cadastrar uma viagem? Utilize o ID para identificá-lo: ");
             int idTeste = teclado.nextInt();
 
-            for(int i=0;i<pessoa.length;i++){
-                if(idTeste == pessoa[i].getId()){
-                    System.out.println("Usuário: "+pessoa[i].getNome());
-                    
+            System.out.println("Quantas viagens esse usuário deseja fazer? ");
+            int quantViagens = teclado.nextInt();
+
+            Viagem[] viagemUsuario = new Viagem[quantViagens];
+
+            for(int i=0; i<viagemUsuario.length; i++ ){
+                for(int j=0;j<pessoa.length;j++){
+                    if(idTeste == pessoa[j].getId()){
+                        System.out.println("Usuário: "+pessoa[j].getNome());
+                        
+                    }
                 }
             }
         }
