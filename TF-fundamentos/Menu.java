@@ -12,37 +12,18 @@ public class Menu {
         int quantPessoas = teclado.nextInt();
 
         Usuario[] pessoa = new Usuario[quantPessoas];
-        Viagem[] viagem = new Viagem[quantPessoas];
+        Viagem[][] viagemUsuario = new Viagem[quantPessoas][];
 
         Menu.getCadastroUsuarios(teclado, pessoa);
-        Menu.getCadastroViagem(teclado, pessoa, viagem);
+        Menu.getCadastroViagem(teclado, pessoa, viagemUsuario);
     }
 
     public static void getCadastroUsuarios(Scanner teclado, Usuario[] pessoa) {
         Usuario.getCadastro(teclado, pessoa);
     }
 
-    public static void getCadastroViagem(Scanner teclado, Usuario[] pessoa, Viagem[] viagem) {
-        while (true) {
-            System.out.println("\n===== CADASTRO DE VIAGENS =====\n");
-
-            System.out.println("Qual usuário deseja cadastrar uma viagem? Utilize o ID para identificá-lo: ");
-            int idTeste = teclado.nextInt();
-
-            System.out.println("Quantas viagens esse usuário deseja fazer? ");
-            int quantViagens = teclado.nextInt();
-
-            Viagem[] viagemUsuario = new Viagem[quantViagens];
-
-            for(int i=0; i<viagemUsuario.length; i++ ){
-                for(int j=0;j<pessoa.length;j++){
-                    if(idTeste == pessoa[j].getId()){
-                        System.out.println("Usuário: "+pessoa[j].getNome());
-                        
-                    }
-                }
-            }
-        }
+    public static void getCadastroViagem(Scanner teclado, Usuario[] pessoa, Viagem[][] viagemUsuario) {
+        Viagem.getCadastro(teclado, pessoa, viagemUsuario);
     }
 
     public void menuPrincipal() {
@@ -54,3 +35,14 @@ public class Menu {
         }
     }
 }
+
+/*
+ *  for(int i=0; i<viagemUsuario.length; i++ ){
+                for(int j=0;j<pessoa.length;j++){
+                    if(idTeste == pessoa[j].getId()){
+                        System.out.println("Usuário: "+pessoa[j].getNome());
+                        
+                    }
+                }
+            }
+ */
