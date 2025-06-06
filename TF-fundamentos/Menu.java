@@ -26,23 +26,14 @@ public class Menu {
         Viagem.getCadastro(teclado, pessoa, viagemUsuario);
     }
 
-    public void menuPrincipal() {
-        while (true) {
-            System.out.println("\n===== MENU =====\n");
+    public void getMenuCadastrados(Scanner teclado, Usuario[] pessoa, Viagem[][] viagemUsuario) {
+        System.out.println("\n===== MENU PRINCIPAL =====\n");
+        System.out.println("1 - Verificar Usuários Cadastrados");
+        System.out.println("2 - Verificar Viagens Cadastradas");
+        int opc = teclado.nextInt();
 
-            System.out.println("1 - Adicionar Atividade");
-            System.out.println("2 - Adicionar Acomodação");
+        switch (opc) {
+            case 1:
         }
     }
 }
-
-/*
- *  for(int i=0; i<viagemUsuario.length; i++ ){
-                for(int j=0;j<pessoa.length;j++){
-                    if(idTeste == pessoa[j].getId()){
-                        System.out.println("Usuário: "+pessoa[j].getNome());
-                        
-                    }
-                }
-            }
- */
