@@ -35,8 +35,7 @@ public class Usuario {
             System.out.println("ID: " + pessoa[i].getId());
             System.out.println("Nome: " + pessoa[i].getNome());
             System.out.println("Email: " + pessoa[i].getEmail());
-            
-            System.out.println();
+            System.out.println("\n===============================\n");
         }
     }
 
