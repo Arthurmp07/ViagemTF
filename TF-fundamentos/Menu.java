@@ -38,7 +38,7 @@ public class Menu {
                 break;
             }
 
-            System.out.print("\nVoltar ao menu? (S/N) \n");
+            System.out.print("\nVoltar ao menu? (S/N - Encerrar Programa) \n");
             String retornoMenu = "";
             retornoMenu = retornoMenu.toLowerCase();
 
