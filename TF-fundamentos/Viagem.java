@@ -26,6 +26,8 @@ public class Viagem {
 
             viagemUsuario[i] = new Viagem[quantViagens];
 
+            Atividade[][] atividade = new  Atividade[quantViagens][];
+
             for (int j = 0; j < quantViagens; j++) {
                 System.out.println("\n----- VIAGEM " + (j + 1) + " -----\n");
                 viagemUsuario[i][j] = new Viagem();
@@ -33,9 +35,17 @@ public class Viagem {
                 viagemUsuario[i][j].setDestino(teclado);
                 viagemUsuario[i][j].setDataInicio(teclado);
                 viagemUsuario[i][j].setDataFim(teclado);
-                viagemUsuario[i][j].setUsuario(teclado);
+                viagemUsuario[i][j].setUsuario(teclado, pessoa, i);
+
+                System.out.println("Informe a quantidade de atividades que o usuário fará nesta viagem: ");
+                int quantAtividades = teclado.nextInt();
+
+                Atividade.getCadastro(atividade, i, j, quantAtividades, teclado, viagemUsuario);
             }
         }
+
+        System.out.println("\nCadastro de viagens realizado com sucesso!\n");
+
         return viagemUsuario;
     }
 
@@ -109,11 +119,17 @@ public class Viagem {
         System.out.println();
     }
 
-    public void setUsuario(Scanner teclado) {
+    /*public void setUsuario(Scanner teclado) {
         System.out.print("Digite o ID do usuário responsável: ");
         this.usuario = teclado.nextInt();
         teclado.nextLine();
 
         System.out.println();
+    }
+
+     */
+
+    public void setUsuario(Scanner teclado, Usuario[] pessoa, int i) {
+        this.usuario = pessoa[i].getId();
     }
 }

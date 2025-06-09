@@ -72,4 +72,12 @@ public class Usuario {
 
         System.out.println();
     }
+
+    public void toString (Usuario[] pessoa, int i) {
+        String pessoaString = "";
+
+        pessoaString += pessoa[i].getId() + ", ";
+        pessoaString += pessoa[i].getNome() + ", ";
+        pessoaString += pessoa[i].getEmail() + ", ";
+    }
 }

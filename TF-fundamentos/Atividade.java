@@ -4,17 +4,29 @@ public class Atividade {
     private int id;
     private String descricao;
     private double custoEstimado;
-    private Viagem viagem;
+    private int viagem;
     Scanner teclado = new Scanner(System.in);
 
-    public Atividade(int id, String descricao, double custoEstimado, Viagem viagem) {
+    public Atividade() {
         this.id = id;
         this.descricao = descricao;
         this.custoEstimado = custoEstimado;
         this.viagem = viagem;
     }
 
-    public int getId() {
+    public static Atividade[][] getCadastro(Atividade[][] atividade, int i, int j, int quantAtividades, Scanner teclado, Viagem[][] viagemUsuario){
+        for (int h = 0; h < quantAtividades; h++) {
+            System.out.println("\n----- ATIVIDADE " + (j + 1) + " -----\n");
+            atividade[j][h] = new Atividade();
+            atividade[j][h].setID(teclado);
+            atividade[j][h].setDescricao(teclado);
+            atividade[j][h].setCustoEstimado(teclado);
+            atividade[j][h].setViagem(viagemUsuario, i, j);
+        }
+        return atividade;
+    }
+
+    public int getID() {
         return id;
     }
 
@@ -26,24 +38,39 @@ public class Atividade {
         return custoEstimado;
     }
 
-    public Viagem getviagem() {
+    public int getViagem() {
         return viagem;
     }
 
-    public void setId(Scanner teclado) {
-        this.id = id;
+    public void setID(Scanner teclado) {
+        System.out.print("Digite o ID: ");
+        this.id = teclado.nextInt();
+        teclado.nextLine();
+
+        System.out.println();
     }
 
     public void setDescricao(Scanner teclado) {
-        this.descricao = descricao;
+        System.out.print("Digite a descrição da atividade: ");
+        this.descricao = teclado.nextLine();
+
+        System.out.println();
     }
 
     public void setCustoEstimado(Scanner teclado) {
-        this.custoEstimado = custoEstimado;
+        System.out.print("Digite o custo estimado da atividade: ");
+        this.custoEstimado = teclado.nextInt();
+        teclado.nextLine();
+
+        System.out.println();
     }
 
-    public void setviagem(Scanner teclado) {
+    public void setViagem(Scanner teclado) {
         this.viagem = viagem;
+    }
+
+    public void setViagem(Viagem[][] viagemUsuario, int i, int j) {
+        this.viagem = viagemUsuario[i][j].getId();
     }
 
     public static double calcularCustoTotal(Atividade[] atividades) {
@@ -58,6 +85,6 @@ public class Atividade {
         System.out.println("id: " + id);
         System.out.println("descrição: " + descricao);
         System.out.println("custo: " + custoEstimado);
-        System.out.println("viagem: " + viagem.getDestino());
+        //System.out.println("viagem: " + viagem.getDestino());
     }
 }
