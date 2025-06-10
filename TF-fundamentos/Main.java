@@ -6,6 +6,6 @@ public class Main {
 
         Menu.getMenu1(teclado);
 
-        //amem (a main)
+        // amem (a main)
     }
 }

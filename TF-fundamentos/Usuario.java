@@ -13,18 +13,38 @@ public class Usuario {
 
     public static Usuario[] getCadastro(Scanner teclado, Usuario[] pessoa) {
         System.out.println("\n===== CADASTRO DE USUÁRIOS =====\n");
-        
         for (int i = 0; i < pessoa.length; i++) {
             System.out.println("===== USUÁRIO " + (i + 1) + " =====\n");
             pessoa[i] = new Usuario();
             pessoa[i].setId(teclado);
             pessoa[i].setNome(teclado);
-            pessoa[i].setEmail(teclado);
+            pessoa[i].setEmail(teclado, pessoa, i);
+            System.out.println();
         }
-
-        System.out.println("\nCadastro de usuários realizado com sucesso!\n");
-
+        System.out.println("\nCadastro de viagens realizado com sucesso!\n");
         return pessoa;
+    }
+
+    public void setEmail(Scanner teclado, Usuario[] pessoa, int i) {
+        boolean emailDuplicado;
+        String email;
+
+        do {
+            emailDuplicado = false;
+
+            System.out.print("Digite o email: ");
+            email = teclado.nextLine();
+
+            for (int j = 0; j < i; j++) {
+                if (pessoa[j].getEmail().equalsIgnoreCase(email)) {
+                    System.out.println("Email já cadastrado. Digite outro.");
+                    emailDuplicado = true;
+                    break;
+                }
+            }
+        } while (emailDuplicado);
+
+        this.email = email;
     }
 
     public static void getUsuariosCadastrados(Usuario[] pessoa) {
@@ -73,7 +93,7 @@ public class Usuario {
         System.out.println();
     }
 
-    public void toString (Usuario[] pessoa, int i) {
+    public void toString(Usuario[] pessoa, int i) {
         String pessoaString = "";
 
         pessoaString += pessoa[i].getId() + ", ";

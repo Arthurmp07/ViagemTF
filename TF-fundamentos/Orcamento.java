@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class Orcamento {
     private Viagem viagem;
     private double totalGasto;
-    Scanner teclado = new Scanner(System.in);
 
     public Orcamento(Viagem viagem, double totalGasto) {
         this.totalGasto = totalGasto;
@@ -26,15 +25,19 @@ public class Orcamento {
         this.totalGasto = totalGasto;
     }
 
+    public void calcularTotal(Atividade[] atividades) {
+        double totalAtividades = 0;
+        double custoAcomodacoes = 0;
 
-    public void calcularTotal(Atividade[] atividades, double custoAcomodacoes){
-        double totalAtividades = Atividade.calcularCustoTotal(atividades);
+        for(int i=0; i<atividades.length;i++){
+            totalAtividades += atividades[i].getCustoEstimado();
+        }
+
         this.totalGasto = totalAtividades + custoAcomodacoes;
-        
     }
 
-    public void exibirOrcamento(){
-       System.out.println("Destino da Viagem: " + viagem.getDestino());
+    public void exibirOrcamento() {
+        System.out.println("Destino da Viagem: " + viagem.getDestino());
         System.out.println("Total Gasto: R$" + totalGasto);
     }
 

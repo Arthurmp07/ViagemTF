@@ -5,18 +5,33 @@ public class Acomodacao {
     private String nome;
     private double custoDiario;
     private int diasReservados;
-    private Viagem viagem;
-    Scanner teclado = new Scanner(System.in);
+    private int viagem;
+    private double custoEstadia;
 
-    public Acomodacao(int id, String nome, double custoDiario, int diasReservados, Viagem viagem) {
-        this.id = id;
-        this.nome = nome;
-        this.custoDiario = custoDiario;
-        this.diasReservados = diasReservados;
-        this.viagem = viagem;
+    public Acomodacao() {
     }
 
-    public int getId() {
+    public static Acomodacao[][][] getCadastro(Acomodacao[][][] acomodacaoUsuario, int i, int j, int quantAcomodacao, Scanner teclado, Viagem[][] viagemUsuario) {
+        for (int h = 0; h < quantAcomodacao; h++) {
+            System.out.println("\n----- Acomodacao " + (h + 1) + " -----\n");
+            acomodacaoUsuario[i][j][h] = new Acomodacao();
+            acomodacaoUsuario[i][j][h].setID(teclado);
+            acomodacaoUsuario[i][j][h].setNome(teclado);
+            acomodacaoUsuario[i][j][h].setCustoDiario(teclado);
+            acomodacaoUsuario[i][j][h].setDiasReservados(teclado);
+            acomodacaoUsuario[i][j][h].setViagem(viagemUsuario, i, j);
+        }
+        return acomodacaoUsuario;
+    }
+
+    public static void getAcomodacaoCadastrada(Acomodacao[] acomodacao) {
+        for (int h = 0; h < acomodacao.length; h++) {
+            System.out.println("\n----- Acomodacao " + (h + 1) + " -----\n");
+            acomodacao[h].exibirAcomodacao();
+        }   
+    }       
+
+    public int getID() {
         return id;
     }
 
@@ -24,51 +39,59 @@ public class Acomodacao {
         return nome;
     }
 
-    public double getcustoDiario() {
-        return custoDiario;
+    public double getCustoEstadia() {
+        return custoEstadia;
     }
 
-    public int diasReservados() {
-        return diasReservados;
-    }
-
-    public Viagem viagem() {
+    public int getViagem() {
         return viagem;
     }
 
-    public void setId(Scanner teclado) {
-        this.id = id;
+    public void setID(Scanner teclado) {
+        System.out.print("Digite o ID da Acomodacao: ");
+        this.id = teclado.nextInt();
+        teclado.nextLine();
+
+        System.out.println();
     }
 
     public void setNome(Scanner teclado) {
-        this.nome = nome;
+        System.out.print("Digite o nome do local de acomodação: ");
+        this.nome = teclado.nextLine();
+
+        System.out.println();
     }
 
-    public void setcustoDiario(Scanner teclado) {
-        this.custoDiario = custoDiario;
+    public void setCustoDiario(Scanner teclado) {
+        System.out.print("Digite o custo diário da acomodação: ");
+        this.custoDiario = teclado.nextDouble();
+        teclado.nextLine();
+
+        System.out.println();
     }
 
-    public void setdiasReservados(Scanner teclado) {
-        this.diasReservados = diasReservados;
+    public void setDiasReservados(Scanner teclado) {
+        System.out.print("Digite a quantidade de dias reservados: ");
+        this.diasReservados = teclado.nextInt();
+        teclado.nextLine();
+
+        System.out.println();
     }
 
-    public void setviagem(Scanner teclado) {
-        this.viagem = viagem;
+    public void setCustoEstadia(){
+        custoEstadia = custoDiario*diasReservados;
     }
 
-    public double calcularCustoTotal(){
-        return custoDiario * diasReservados;
+    public void setViagem(Viagem[][] viagemUsuario, int i, int j) {
+        this.viagem = viagemUsuario[i][j].getId();
     }
 
-    public void exibirAcomodacao(){
-       System.out.println("ID: " + id);
-       System.out.println("Nome: " + nome);
-       System.out.println("Custo Diário: R$" + custoDiario);
-       System.out.println("Dias Reservados: " + diasReservados);
-       System.out.println("Custo Total: R$" + calcularCustoTotal());
-       System.out.println("Destino da Viagem: " + viagem.getDestino());
+    public void exibirAcomodacao() {
+        System.out.println("ID: " + id);
+        System.out.println("Descrição: " + nome);
+        System.out.println("Custo estadia: R$ " + custoEstadia);
+        System.out.println("ID da viagem associada: " + viagem);
     }
 
-    
 
 }

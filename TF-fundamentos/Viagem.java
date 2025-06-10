@@ -8,14 +8,10 @@ public class Viagem {
     private int usuario;
 
     public Viagem() {
-        this.id = id;
-        this.destino = destino;
-        this.dataInicio = dataInicio;
-        this.dataFim = dataFim;
-        this.usuario = usuario;
     }
 
-    public static Viagem[][] getCadastro(Scanner teclado, Usuario[] pessoa, Viagem[][] viagemUsuario) {
+    public static Viagem[][] getCadastro(Scanner teclado, Usuario[] pessoa, Viagem[][] viagemUsuario,
+            Atividade[][][] atividadesUsuario, Acomodacao[][][] acomodacaoUsuario) {
         System.out.println("\n===== CADASTRO DE VIAGENS =====\n");
         for (int i = 0; i < pessoa.length; i++) {
             System.out.println("===== USUÁRIO " + (i + 1) + " =====\n");
@@ -25,8 +21,8 @@ public class Viagem {
             teclado.nextLine();
 
             viagemUsuario[i] = new Viagem[quantViagens];
-
-            Atividade[][] atividade = new  Atividade[quantViagens][];
+            atividadesUsuario[i] = new Atividade[quantViagens][];
+            acomodacaoUsuario[i] = new Acomodacao[quantViagens][];
 
             for (int j = 0; j < quantViagens; j++) {
                 System.out.println("\n----- VIAGEM " + (j + 1) + " -----\n");
@@ -37,12 +33,21 @@ public class Viagem {
                 viagemUsuario[i][j].setDataFim(teclado);
                 viagemUsuario[i][j].setUsuario(teclado, pessoa, i);
 
-                System.out.println("Informe a quantidade de atividades que o usuário fará nesta viagem: ");
+                System.out.println("Informe a quantidade de atividades para essa viagem:");
                 int quantAtividades = teclado.nextInt();
+                teclado.nextLine();
 
-                atividade[j] = new Atividade[quantAtividades];
+                atividadesUsuario[i][j] = new Atividade[quantAtividades];
+                
+                Atividade.getCadastro(atividadesUsuario, i, j, quantAtividades, teclado, viagemUsuario);
 
-                Atividade.getCadastro(atividade, i, j, quantAtividades, teclado, viagemUsuario);
+                System.out.println("Informe a quantidade de acomodações para essa viagem:");
+                int quantAcomodacao = teclado.nextInt();
+                teclado.nextLine();
+
+                acomodacaoUsuario[i][j] = new Acomodacao[quantAcomodacao];
+
+                Acomodacao.getCadastro(acomodacaoUsuario, i, j, quantAcomodacao, teclado, viagemUsuario);
             }
         }
 
@@ -51,26 +56,37 @@ public class Viagem {
         return viagemUsuario;
     }
 
-    public static void getViagensCadastradas(Usuario[] pessoa, Viagem[][] viagemUsuario) {
+    public static void getViagensCadastradas(Usuario[] pessoa, Viagem[][] viagemUsuario, Atividade[][][] atividadesUsuario, Acomodacao[][][] acomodacaoUsuario) {
         System.out.println("\n===== VIAGENS CADASTRADAS =====\n");
         for (int i = 0; i < pessoa.length; i++) {
-            if(viagemUsuario[i].length == 1) {
-                System.out.println("USUÁRIO " + (i + 1) + ": "+viagemUsuario[i].length+" Viagem");
-            } else {
-                System.out.println("USUÁRIO " + (i + 1) + ": "+viagemUsuario[i].length+" Viagens");
+            if(viagemUsuario.length == 1){
+                System.out.println("USUÁRIO " + (i + 1) + ": " + viagemUsuario[i].length + " viagem");
+            } else{
+                System.out.println("USUÁRIO " + (i + 1) + ": " + viagemUsuario[i].length + " viagens");
             }
 
             for (int j = 0; j < viagemUsuario[i].length; j++) {
+                System.out.println("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-\n");
                 System.out.println("\n----- VIAGEM " + (j + 1) + " -----\n");
-                System.out.println("ID da viagem: "+viagemUsuario[i][j].getId());
-                System.out.println("Destino: "+viagemUsuario[i][j].getDestino());
-                System.out.println("Data de início: "+viagemUsuario[i][j].getDataInicio());
-                System.out.println("Data de término: "+viagemUsuario[i][j].getDataFim());
-                System.out.println("ID do usuário responsável: "+viagemUsuario[i][j].getUsuario());
+                System.out.println("ID: " + viagemUsuario[i][j].getId());
+                System.out.println("Destino: " + viagemUsuario[i][j].getDestino());
+                System.out.println("Data de Início: " + viagemUsuario[i][j].getDataInicio());
+                System.out.println("Data de Fim: " + viagemUsuario[i][j].getDataFim());
+                System.out.println("ID do Usuário: " + viagemUsuario[i][j].getUsuario());
+
+                Atividade[] atividades = atividadesUsuario[i][j];
+
+                Atividade.getAtividadesCadastradas(atividades);
+
+                Acomodacao[] acomodacoes = acomodacaoUsuario[i][j];
+
+                Acomodacao.getAcomodacaoCadastrada(acomodacoes);
+
+                System.out.println("\n-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-=-=-=-=-=-=-=-\n");
             }
-            System.out.println("\n-------------------------------------------\n");
         }
     }
+    
 
     public int getId() {
         return id;
@@ -120,16 +136,6 @@ public class Viagem {
 
         System.out.println();
     }
-
-    /*public void setUsuario(Scanner teclado) {
-        System.out.print("Digite o ID do usuário responsável: ");
-        this.usuario = teclado.nextInt();
-        teclado.nextLine();
-
-        System.out.println();
-    }
-
-     */
 
     public void setUsuario(Scanner teclado, Usuario[] pessoa, int i) {
         this.usuario = pessoa[i].getId();
