@@ -38,7 +38,7 @@ public class Viagem {
                 teclado.nextLine();
 
                 atividadesUsuario[i][j] = new Atividade[quantAtividades];
-                
+
                 Atividade.getCadastro(atividadesUsuario, i, j, quantAtividades, teclado, viagemUsuario);
 
                 System.out.println("Informe a quantidade de acomodações para essa viagem:");
@@ -56,12 +56,13 @@ public class Viagem {
         return viagemUsuario;
     }
 
-    public static void getViagensCadastradas(Usuario[] pessoa, Viagem[][] viagemUsuario, Atividade[][][] atividadesUsuario, Acomodacao[][][] acomodacaoUsuario) {
+    public static void getViagensCadastradas(Usuario[] pessoa, Viagem[][] viagemUsuario,
+            Atividade[][][] atividadesUsuario, Acomodacao[][][] acomodacaoUsuario) {
         System.out.println("\n===== VIAGENS CADASTRADAS =====\n");
         for (int i = 0; i < pessoa.length; i++) {
-            if(viagemUsuario.length == 1){
+            if (viagemUsuario.length == 1) {
                 System.out.println("USUÁRIO " + (i + 1) + ": " + viagemUsuario[i].length + " viagem");
-            } else{
+            } else {
                 System.out.println("USUÁRIO " + (i + 1) + ": " + viagemUsuario[i].length + " viagens");
             }
 
@@ -86,7 +87,6 @@ public class Viagem {
             }
         }
     }
-    
 
     public int getId() {
         return id;

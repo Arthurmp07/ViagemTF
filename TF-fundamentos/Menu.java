@@ -23,7 +23,8 @@ public class Menu {
         Menu.getMenuCadastrados(teclado, pessoa, viagemUsuario, atividadesUsuario, acomodacaoUsuario);
     }
 
-    public static void getMenuCadastrados(Scanner teclado, Usuario[] pessoa, Viagem[][] viagemUsuario, Atividade[][][] atividadesUsuario, Acomodacao[][][] acomodacaoUsuario) {
+    public static void getMenuCadastrados(Scanner teclado, Usuario[] pessoa, Viagem[][] viagemUsuario,
+            Atividade[][][] atividadesUsuario, Acomodacao[][][] acomodacaoUsuario) {
         while (true) {
             System.out.println("\n===== MENU PRINCIPAL =====\n");
             System.out.println("1 - Verificar Usuários Cadastrados");

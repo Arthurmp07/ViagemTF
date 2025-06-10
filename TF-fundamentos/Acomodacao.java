@@ -11,7 +11,8 @@ public class Acomodacao {
     public Acomodacao() {
     }
 
-    public static Acomodacao[][][] getCadastro(Acomodacao[][][] acomodacaoUsuario, int i, int j, int quantAcomodacao, Scanner teclado, Viagem[][] viagemUsuario) {
+    public static Acomodacao[][][] getCadastro(Acomodacao[][][] acomodacaoUsuario, int i, int j, int quantAcomodacao,
+            Scanner teclado, Viagem[][] viagemUsuario) {
         for (int h = 0; h < quantAcomodacao; h++) {
             System.out.println("\n----- Acomodacao " + (h + 1) + " -----\n");
             acomodacaoUsuario[i][j][h] = new Acomodacao();
@@ -28,8 +29,8 @@ public class Acomodacao {
         for (int h = 0; h < acomodacao.length; h++) {
             System.out.println("\n----- Acomodacao " + (h + 1) + " -----\n");
             acomodacao[h].exibirAcomodacao();
-        }   
-    }       
+        }
+    }
 
     public int getID() {
         return id;
@@ -78,8 +79,8 @@ public class Acomodacao {
         System.out.println();
     }
 
-    public void setCustoEstadia(){
-        custoEstadia = custoDiario*diasReservados;
+    public void setCustoEstadia() {
+        custoEstadia = custoDiario * diasReservados;
     }
 
     public void setViagem(Viagem[][] viagemUsuario, int i, int j) {
@@ -92,6 +93,5 @@ public class Acomodacao {
         System.out.println("Custo estadia: R$ " + custoEstadia);
         System.out.println("ID da viagem associada: " + viagem);
     }
-
 
 }

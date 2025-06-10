@@ -26,8 +26,8 @@ public class Atividade {
         for (int h = 0; h < atividades.length; h++) {
             System.out.println("\n----- ATIVIDADE " + (h + 1) + " -----\n");
             atividades[h].exibiratividade();
-        }   
-    }       
+        }
+    }
 
     public int getID() {
         return id;

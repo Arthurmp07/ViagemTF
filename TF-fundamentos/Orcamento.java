@@ -29,7 +29,7 @@ public class Orcamento {
         double totalAtividades = 0;
         double custoAcomodacoes = 0;
 
-        for(int i=0; i<atividades.length;i++){
+        for (int i = 0; i < atividades.length; i++) {
             totalAtividades += atividades[i].getCustoEstimado();
         }
 
