@@ -40,6 +40,8 @@ public class Viagem {
                 System.out.println("Informe a quantidade de atividades que o usuário fará nesta viagem: ");
                 int quantAtividades = teclado.nextInt();
 
+                atividade[j] = new Atividade[quantAtividades];
+
                 Atividade.getCadastro(atividade, i, j, quantAtividades, teclado, viagemUsuario);
             }
         }
